@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Churn Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 25px;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Customer Churn Prediction</h1>
+
+    <form id="churnForm">
+
+        <div class="form-grid">
+
+            <div>
+                <label>Gender</label>
+                <select id="gender">
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Senior Citizen</label>
+                <select id="SeniorCitizen">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Partner</label>
+                <select id="Partner">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Dependents</label>
+                <select id="Dependents">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Tenure</label>
+                <input type="number" id="tenure" value="1" min="0">
+            </div>
+
+            <div>
+                <label>Phone Service</label>
+                <select id="PhoneService">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Multiple Lines</label>
+                <select id="MultipleLines">
+                    <option value="No phone service">No phone service</option>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Internet Service</label>
+                <select id="InternetService">
+                    <option value="DSL">DSL</option>
+                    <option value="Fiber optic">Fiber optic</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Online Security</label>
+                <select id="OnlineSecurity">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Online Backup</label>
+                <select id="OnlineBackup">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Device Protection</label>
+                <select id="DeviceProtection">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Tech Support</label>
+                <select id="TechSupport">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Streaming TV</label>
+                <select id="StreamingTV">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Streaming Movies</label>
+                <select id="StreamingMovies">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Contract</label>
+                <select id="Contract">
+                    <option value="Month-to-month">Month-to-month</option>
+                    <option value="One year">One year</option>
+                    <option value="Two year">Two year</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Paperless Billing</label>
+                <select id="PaperlessBilling">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Payment Method</label>
+                <select id="PaymentMethod">
+                    <option value="Electronic check">Electronic check</option>
+                    <option value="Mailed check">Mailed check</option>
+                    <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                    <option value="Credit card (automatic)">Credit card (automatic)</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Monthly Charges</label>
+                <input type="number" id="MonthlyCharges" value="29.85" step="0.01">
+            </div>
+
+            <div>
+                <label>Total Charges</label>
+                <input type="number" id="TotalCharges" value="29.85" step="0.01">
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Predict Churn
+        </button>
+
+    </form>
+
+    <div id="result"></div>
+
+</div>
+
+<script>
+
+document.getElementById("churnForm").addEventListener("submit", async function(event) {
+
+    event.preventDefault();
+
+    const data = {
+        gender: document.getElementById("gender").value,
+        SeniorCitizen: Number(document.getElementById("SeniorCitizen").value),
+        Partner: document.getElementById("Partner").value,
+        Dependents: document.getElementById("Dependents").value,
+        tenure: Number(document.getElementById("tenure").value),
+        PhoneService: document.getElementById("PhoneService").value,
+        MultipleLines: document.getElementById("MultipleLines").value,
+        InternetService: document.getElementById("InternetService").value,
+        OnlineSecurity: document.getElementById("OnlineSecurity").value,
+        OnlineBackup: document.getElementById("OnlineBackup").value,
+        DeviceProtection: document.getElementById("DeviceProtection").value,
+        TechSupport: document.getElementById("TechSupport").value,
+        StreamingTV: document.getElementById("StreamingTV").value,
+        StreamingMovies: document.getElementById("StreamingMovies").value,
+        Contract: document.getElementById("Contract").value,
+        PaperlessBilling: document.getElementById("PaperlessBilling").value,
+        PaymentMethod: document.getElementById("PaymentMethod").value,
+        MonthlyCharges: Number(document.getElementById("MonthlyCharges").value),
+        TotalCharges: Number(document.getElementById("TotalCharges").value)
+    };
+
+    const response = await fetch("/predict", {
+
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    document.getElementById("result").innerHTML =
+        `
+        <p><strong>Churn Probability:</strong>
+        ${(result.churn_probability * 100).toFixed(2)}%</p>
+
+        <p><strong>Prediction:</strong>
+        ${result.result}</p>
+        `;
+
+});
+
+</script>
+
+</body>
+</html>
